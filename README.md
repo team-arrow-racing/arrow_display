@@ -1,6 +1,6 @@
 # Arrow Display
 
-Arrow Display is a Rust Application used to display the current speed digitally. Speed is captured randomly and displayed on the screen in binary format each second.
+Arrow Display is a Rust Application used to display the current speed digitally. 
 
 ## Prerequisites
 
@@ -9,8 +9,8 @@ Arrow Display is a Rust Application used to display the current speed digitally.
 
 ## Installation
 
-1. Clone the repo: `git clone https://github.com/yourusername/arrow-display.git`
-2. Move into the newly created directory: `cd arrow-display`
+1. Clone the repo: `git clone git@github.com:team-arrow-racing/arrow_display.git`
+2. Move into the newly created directory: `cd arrow_display`
 
 ## Running
 
