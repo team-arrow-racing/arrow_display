@@ -1,0 +1,31 @@
+name: Rust tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Check if Rust is correctly set up
+      run: cargo --version
+  
+    - name: Install dependencies
+      run: cargo build --verbose
+
+    - name: Running tests
+      run: cargo test --verbose
+      
