@@ -10,7 +10,7 @@ fn test_show_speed() {
     let display = MockDisplay::new();
     let mut speed_display = SpeedDisplay::new(display);
 
-    let result = speed_display.show_speed(60);
+    let result = speed_display.show_speed(120);
 
     assert!(result.is_ok(), "Error displaying speed: {:?}", result.unwrap_err());
 
@@ -19,7 +19,7 @@ fn test_show_speed() {
         "################################################################",
         "#                                                              #",
         // 9
-        // 7 TEXT: 60 km/h
+        // 7 TEXT: 120 km/h
         // 48
         "################################################################",
     ]);

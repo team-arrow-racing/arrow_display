@@ -34,7 +34,7 @@ where
         // Add km/h to the speed
         let binding = speed.to_string() + " km/h";
 
-        let speed_text = Text::new(&binding, Point::new(15, 28), text_style);
+        let speed_text = Text::new(&binding, Point::new(10, 22), text_style);
 
 
         Rectangle::new(Point::new(0, 0), Size::new(64, 64))
