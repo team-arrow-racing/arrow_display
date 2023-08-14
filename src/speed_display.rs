@@ -33,7 +33,9 @@ where
 
         let binding = speed.to_string();
 
-        let speed_text = Text::new(&binding, Point::new(0, 0), text_style);
+        // let speed_text = Text::new(&binding, Point::new(0, 0), text_style);
+        let speed_text = Text::new(&binding, Point::new(15, 15), text_style);
+
 
         Rectangle::new(Point::new(0, 0), Size::new(64, 64))
             .into_styled(style)
