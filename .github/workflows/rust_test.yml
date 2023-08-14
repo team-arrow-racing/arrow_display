@@ -26,6 +26,17 @@ jobs:
       with:
         toolchain: stable
         override: true
+    
+    # Cache deps
+    - name: Cache Cargo registry and target directories
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+          target
+        # This key uses a hash of your Cargo.toml files to determine if dependencies have changed
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
 
     - name: Check if Rust is correctly set up
       run: cargo --version
