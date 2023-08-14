@@ -6,8 +6,9 @@ use arrow_display::speed_display::SpeedDisplay;
 
 #[test]
 fn test_show_speed() {
+    // 240 * 320
     let display = MockDisplay::new();
-    let mut speed_display = SpeedDisplay::new(display.clone());
+    let mut speed_display = SpeedDisplay::new(display);
 
     let result = speed_display.show_speed(60);
 
@@ -25,7 +26,7 @@ fn test_show_speed() {
     ]);
 
     assert_eq!(
-        display,
+        speed_display.display,
         expected_display,
         "Display does not match expected display"
     );
