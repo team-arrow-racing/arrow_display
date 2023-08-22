@@ -34,6 +34,7 @@ where
         // Add km/h to the speed
         let binding = speed.to_string() + " km/h";
 
+        // Point is the on screen pointer for where to start. 0,0 will likely render half off screen and error
         let speed_text = Text::new(&binding, Point::new(10, 22), text_style);
 
 
