@@ -11,7 +11,7 @@ use embedded_graphics::pixelcolor::BinaryColor;
 use rand;
 
 fn main() {
-    let display: SimulatorDisplay<BinaryColor> = SimulatorDisplay::new(Size::new(320, 240));
+    let display: SimulatorDisplay<BinaryColor> = SimulatorDisplay::new(Size::new(240, 320));
     let mut speed_display = SpeedDisplay::new(display);
 
     let output_settings = OutputSettingsBuilder::new()
