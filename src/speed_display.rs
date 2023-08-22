@@ -1,3 +1,5 @@
+extern crate alloc;
+use alloc::string::ToString;
 use embedded_graphics::{
     mono_font::{ascii::FONT_6X10, MonoTextStyle},
     pixelcolor::BinaryColor,
