@@ -1,31 +1,31 @@
 use cortex_m::asm::nop;
 
 use stm32l4xx_hal::{
-    delay::Delay,
+    delay::{Delay, DelayCM},
     gpio::{Output, PushPull, PA0, PA1, PC0, PC1, PC2, PC3,PB7, PB6, PB1, PA8},
     prelude::*,
 };
 
-pub struct LCD<'a> {
-    rs: &'a mut PA0<Output<PushPull>>,
-    en: &'a mut PA1<Output<PushPull>>,
-    d4: &'a mut PB7<Output<PushPull>>,
-    d5: &'a mut PB6<Output<PushPull>>,
-    d6: &'a mut PB1<Output<PushPull>>,
-    d7: &'a mut PA8<Output<PushPull>>,
-    delay: &'a mut Delay,
+pub struct LCD {
+    rs: PA0<Output<PushPull>>,
+    en: PA1<Output<PushPull>>,
+    d4: PB7<Output<PushPull>>,
+    d5: PB6<Output<PushPull>>,
+    d6: PB1<Output<PushPull>>,
+    d7: PA8<Output<PushPull>>,
+    delay: DelayCM,
 }
 
-impl<'a> LCD<'a> {
+impl LCD {
     pub fn new(
-        rs: &'a mut PA0<Output<PushPull>>,
-        en: &'a mut PA1<Output<PushPull>>,
-        d4: &'a mut PB7<Output<PushPull>>,
-        d5: &'a mut PB6<Output<PushPull>>,
-        d6: &'a mut PB1<Output<PushPull>>,
-        d7: &'a mut PA8<Output<PushPull>>,
-        delay: &'a mut Delay,
-    ) -> LCD<'a> {
+        rs: PA0<Output<PushPull>>,
+        en: PA1<Output<PushPull>>,
+        d4: PB7<Output<PushPull>>,
+        d5: PB6<Output<PushPull>>,
+        d6: PB1<Output<PushPull>>,
+        d7: PA8<Output<PushPull>>,
+        delay: DelayCM,
+    ) -> LCD {
         LCD {
             rs,
             en,
@@ -144,6 +144,24 @@ impl<'a> LCD<'a> {
     pub fn clear_display(&mut self) {
         self.send_cmd(0x01);
         self.delay.delay_us(3000_u16);
+    }
+
+    pub fn set_position(
+        &mut self,
+        x: u8,
+        y: u8
+    ) {
+        match (x,y) {
+            (0..=15, 0) => {
+                self.send_cmd(0x80 | x);
+                self.delay.delay_us(53_u16)
+            },
+            (0..=15, 1) => {
+                self.send_cmd(0x80 | (x + 0x40));
+                self.delay.delay_us(53_u16)
+            },
+            _ => {}
+        }
     }
 
     /// Send data to the LCD
